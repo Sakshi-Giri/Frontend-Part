@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<title>Translator App</title>
+<script src="script.js" defer></script>
+
+</head>
+<body>
+
+<div class="container">
+    
+    <h1>YouTube Video Transcribe</h1>
+    <div>
+        <label for="youtubeLink">YouTube Video Link:</label>
+        <input type="text" id="youtubeLink" placeholder="Paste YouTube link here">
+    </div>
+    <div>
+        <label for="languageSelect">Select Desired Language:</label>
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+            <!-- Add more options for other languages -->
+        </select>
+    </div>
+    <div>
+        <label for="outputformat">Output Format :</label>
+        <div class="output-icons">
+            <img src="https://cdn-icons-png.flaticon.com/128/84/84177.png" alt="Text" onclick="selectOutput('text')">
+            <img src="https://cdn-icons-png.flaticon.com/128/10257/10257813.png" alt="Audio" onclick="selectOutput('audio')">
+        </div>
+    </div>
+    <button class="translate-btn" onclick="translate()">Translate</button>
+    <div class="result" id="translatedText"></div>
+    <div class="output" id="outputBlock"></div>
+</div>
+
+ <!-- JavaScript code -->
+ <script>
+  function selectOutput(format) {
+    const outputBlock = document.getElementById("outputBlock");
+    if (format === 'text') {
+        outputBlock.innerHTML = "<p>Translated text will be displayed here</p>";
+    } else if (format === 'audio') {
+        outputBlock.innerHTML = '<audio controls autoplay>\
+          <source src="horse.ogg" type="audio/ogg">\
+          <source src="horse.mp3" type="audio/mpeg">\
+          Your browser does not support the audio element.\
+        </audio>';
+    }
+}
+
+function translate() {
+    const youtubeLink = document.getElementById("youtubeLink").value;
+    const destLanguage = document.getElementById("languageSelect").value;
+    
+    // Perform translation here
+    
+    // For demonstration, let's just display the input
+    document.getElementById("translatedText").innerText = "Translated text will appear here";
+}
+</script>
+</body>
+</html>

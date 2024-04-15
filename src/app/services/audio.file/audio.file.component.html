@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcriber</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://www.universal-translation-services.com/wp-content/uploads/2022/03/stories-about-secret-language.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-height: 100vh;
+            padding-right: 50px;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 15px;
+            background-color:#D6EAF8 ;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .box-button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .box-button:hover {
+            background-color: #424442;
+        }
+        .language-select {
+            margin-bottom: 30px;
+        }
+        .language-select select {
+            margin-top: 20px;
+        }
+        .output {
+            margin-top: 30px;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
+            overflow-y: auto; 
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        .output-icons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .output-icons i {
+            font-size: 36px;
+            cursor: pointer;
+            margin: 0 30px;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+        .output-icons i:hover {
+            color: #333;
+        }
+        .download-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .download-icon {
+            font-size: 30px;
+            color: #000;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .download-icon:hover {
+            color: #464242;
+        }
+        h2 {
+            color: #000;
+        }
+        label {
+            color: #333;
+            font-weight: bold;
+        }
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+        .spacer {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Audio Transcriber</h2>
+        <button class="box-button" id="fileInputBtn">Choose File</button><br>
+        <div class="language-select">
+            <label for="language">Choose Language:</label><br>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+            </select>
+        </div>
+        <div class="output-icons">
+            <i class="fas fa-file-alt"></i>
+            <i class="fas fa-volume-up"></i>
+        </div>
+        <div class="output" id="output">
+            <div class="download-container">
+                <i class="fas fa-download download-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to handle the selection of output format icons
+            document.querySelectorAll('.output-icons i').forEach(function (icon) {
+                icon.addEventListener('click', function () {
+                    var outputDiv = document.getElementById("output");
+                    var output = "Transcribed text or audio"; // Placeholder text
+
+                    if (this.classList.contains('fa-file-alt')) {
+                        outputDiv.innerHTML = "<p>" + output + "</p>";
+                    } else if (this.classList.contains('fa-volume-up')) {
+                        outputDiv.innerHTML = "<audio controls><source src='path_to_audio_file'></audio>";
+                    }
+                });
+            });
+
+            // Function to handle the file input button click
+            document.getElementById('fileInputBtn').addEventListener('click', function () {
+                var fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = 'audio/*'; // You can specify accepted file types here
+                fileInput.onchange = function (e) {
+                    var file = e.target.files[0];
+                    // Handle the selected file here
+                    console.log('Selected file:', file);
+                };
+                fileInput.click();
+            });
+        });
+    </script>
+</body>
+</html>
